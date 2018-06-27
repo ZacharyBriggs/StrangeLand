@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d030c63dc08740540aab6f3cf332bd73, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  Projectile: {fileID: 1230051270757376, guid: 6bc3c2b182bb8d94d9671951c52cc854, type: 2}
+  Force: 1
+  FireRate: 1
