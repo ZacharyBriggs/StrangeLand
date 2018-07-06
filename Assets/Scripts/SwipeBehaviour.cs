@@ -6,22 +6,11 @@ public class SwipeBehaviour : MonoBehaviour
 {
     public float Force = 1;
     private Vector2 startPos;
-
     private Vector2 endPos;
-
     private Vector2 direction;
-
     private float touchStart;
-
     private float touchFinish;
-
     private float touchInterval;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
