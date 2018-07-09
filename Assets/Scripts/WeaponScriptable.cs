@@ -9,6 +9,8 @@ public class WeaponScriptable : ScriptableObject
     public GameObject Projectile;
     public int Force;
     public float FireRate;
+    public WeaponClass Weapon;
+
 
     public virtual void Shoot(Transform transform,Transform centerpos)
     {

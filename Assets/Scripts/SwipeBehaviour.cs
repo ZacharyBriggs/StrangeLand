@@ -15,6 +15,10 @@ public class SwipeBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+#if UNITY_ANDROID
+        
+
+
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             touchStart = Time.time;
@@ -30,5 +34,6 @@ public class SwipeBehaviour : MonoBehaviour
             Rigidbody2D rb2d = GetComponent<Rigidbody2D>();
             rb2d.AddForce(-direction / touchInterval * Force);
         }
+#endif
     }
 }

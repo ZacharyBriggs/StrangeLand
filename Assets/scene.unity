@@ -641,7 +641,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pistol
+  m_Text: Custom
 --- !u!222 &252462406
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2768,6 +2768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dd55d0369775e948a0deb62666bb0c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CustomWeapon: {fileID: 11400000, guid: f01e9df694ba93644a7cfcb74057be28, type: 2}
   CurrentText: {fileID: 218250889}
   winText: {fileID: 1905195169}
   loseText: {fileID: 785666535}

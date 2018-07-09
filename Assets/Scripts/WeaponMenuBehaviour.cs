@@ -2,49 +2,53 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class WeaponMenuBehaviour : MonoBehaviour
 {
-    private WeaponScriptable Weapon;
-    private string FileName = "Weapon";
-    private UnityEngine.UI.Slider ForceSlider;
-    private UnityEngine.UI.Slider FireRateSlider;
+    private WeaponClass ClassWeapon = new WeaponClass();
+    private string FileName = "Weapon.txt";
+    private string filePath;
+    public Slider ForceSlider;
+    public Slider FireRateSlider;
+    private Text ForceText;
+    private Text FireRateText;
 
-    // Use this for initialization
     void Start ()
     {
-        string filePath = Path.Combine(Application.streamingAssetsPath, FileName);
-        if(File.Exists(filePath))
+        filePath = Path.Combine(Application.streamingAssetsPath, FileName);
+        if (File.Exists(filePath))
         {
             string data = File.ReadAllText(filePath);
-            Weapon = JsonUtility.FromJson<WeaponScriptable>(data);
+            ClassWeapon = JsonUtility.FromJson<WeaponClass>(data);
         }
         else
-        {
-            Weapon = new WeaponScriptable();
-            string dataAsJson = JsonUtility.ToJson(Weapon);
-            File.WriteAllText(filePath, dataAsJson);
+        {   
+            string data = JsonUtility.ToJson(ClassWeapon);
+            File.WriteAllText(filePath, data);
         }
-	}
+
+        ForceText = ForceSlider.GetComponentInChildren<Text>();
+        FireRateText = FireRateSlider.GetComponentInChildren<Text>();
+    }
 	
-	// Update is called once per frame
 	void Update ()
-    {
-		
-	}
-
-    void StartGameButton()
-    {
-
+	{
+	    ClassWeapon.Force = (int)ForceSlider.value;
+	    ClassWeapon.FireRate = FireRateSlider.value;
+        ForceText.text = ClassWeapon.Force.ToString();
+	    FireRateText.text = FireRateSlider.value.ToString();
     }
 
-    void SaveButton()
+    public void StartGameButton()
     {
-
+        SceneManager.LoadScene("scene");
     }
 
-    void LoadButton()
+    public void SaveButton()
     {
-
+        string data = JsonUtility.ToJson(ClassWeapon);
+        File.WriteAllText(filePath,data);
     }
 }
