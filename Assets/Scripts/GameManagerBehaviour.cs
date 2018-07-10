@@ -23,7 +23,12 @@ public class GameManagerBehaviour : MonoBehaviour
         WeaponClass ClassWeapon = new WeaponClass();
         ClassWeapon.Force = 9;
         ClassWeapon.FireRate = 0.3f;
+#if UNITY_ANDROID
+        string filePath = Path.Combine(Application.persistentDataPath, "Weapon.txt");
+
+#else
         string filePath = Path.Combine(Application.streamingAssetsPath, "Weapon.txt");
+#endif
         if (File.Exists(filePath))
         {
             string data = File.ReadAllText(filePath);

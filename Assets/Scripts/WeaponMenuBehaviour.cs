@@ -9,7 +9,7 @@ public class WeaponMenuBehaviour : MonoBehaviour
 {
     private WeaponClass ClassWeapon = new WeaponClass();
     private string FileName = "Weapon.txt";
-    private string filePath;
+    private string FilePath;
     public Slider ForceSlider;
     public Slider FireRateSlider;
     private Text ForceText;
@@ -17,16 +17,21 @@ public class WeaponMenuBehaviour : MonoBehaviour
 
     void Start ()
     {
-        filePath = Path.Combine(Application.streamingAssetsPath, FileName);
-        if (File.Exists(filePath))
+#if UNITY_ANDROID
+        FilePath = Path.Combine(Application.persistentDataPath, FileName);
+
+#else
+        FilePath = Path.Combine(Application.streamingAssetsPath, FileName);
+#endif
+        if (File.Exists(FilePath))
         {
-            string data = File.ReadAllText(filePath);
+            string data = File.ReadAllText(FilePath);
             ClassWeapon = JsonUtility.FromJson<WeaponClass>(data);
         }
         else
         {   
-            string data = JsonUtility.ToJson(ClassWeapon);
-            File.WriteAllText(filePath, data);
+            string data = JsonUtility.ToJson(ClassWeapon,true);
+            File.WriteAllText(FilePath, data);
         }
 
         ForceText = ForceSlider.GetComponentInChildren<Text>();
@@ -49,6 +54,6 @@ public class WeaponMenuBehaviour : MonoBehaviour
     public void SaveButton()
     {
         string data = JsonUtility.ToJson(ClassWeapon);
-        File.WriteAllText(filePath,data);
+        File.WriteAllText(FilePath,data);
     }
 }
